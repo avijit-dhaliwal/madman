@@ -108,30 +108,19 @@ function addMessage(text, sender, isHtml = false) {
 }
 
 function addBotResponse(text, products = []) {
-    // Parse the response for PRODUCT: tags
-    let processedText = text;
-    const productMatches = text.match(/PRODUCT:([^\n]+)/g) || [];
-
-    // Remove PRODUCT: tags from display text
-    processedText = processedText.replace(/PRODUCT:[^\n]+\n?/g, '').trim();
+    // Remove PRODUCT: tags from display text (worker already extracts these)
+    const processedText = text.replace(/PRODUCT:[^\n]+\n?/g, '').trim();
 
     // Add the text message if there's content
     if (processedText) {
         addMessage(processedText, 'bot');
     }
 
-    // Add product cards for each matched product
-    productMatches.forEach(match => {
-        const productName = match.replace('PRODUCT:', '').trim();
-        const product = findProduct(productName);
+    // Add product cards from the API response (already extracted by worker)
+    products.forEach(product => {
         if (product) {
             addProductCard(product);
         }
-    });
-
-    // Also add any products passed directly from the API
-    products.forEach(product => {
-        addProductCard(product);
     });
 }
 
