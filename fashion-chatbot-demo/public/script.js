@@ -1,9 +1,10 @@
 // Madman Los Angeles Chatbot - Frontend Script
 
-// API Configuration
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? '/api/chat'
-    : '/api/chat';
+// API Configuration - Use Cloudflare Worker for production
+const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const WORKER_URL = 'https://madman-chatbot.avijit-dhaliwal.workers.dev';
+const API_BASE = IS_LOCAL ? '' : WORKER_URL;
+const API_URL = API_BASE + '/api/chat';
 
 // Product inventory (will be loaded from API)
 let productInventory = null;
@@ -18,7 +19,7 @@ const suggestions = document.getElementById('suggestions');
 // Load product inventory on startup
 async function loadInventory() {
     try {
-        const response = await fetch('/api/products');
+        const response = await fetch(API_BASE + '/api/products');
         if (response.ok) {
             productInventory = await response.json();
             console.log('Inventory loaded:', productInventory);

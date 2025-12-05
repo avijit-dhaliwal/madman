@@ -1,10 +1,11 @@
 name = "madman-chatbot"
 main = "src/worker.js"
 compatibility_date = "2024-01-01"
+account_id = "27ce92e0e044af06a479e615f2ed01fb"
 
 [[kv_namespaces]]
 binding = "INVENTORY"
-id = "02be8a2c989d4378adb59dd712ebe2b7"
+id = "9b048c5a139d458e84d48f7fa486ba53"
 
 [triggers]
 crons = ["0 * * * *"]
