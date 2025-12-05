@@ -1,0 +1,17 @@
+{
+  "name": "madman-chatbot",
+  "version": "1.0.0",
+  "description": "Madman Los Angeles AI Style Assistant Chatbot",
+  "main": "index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["chatbot", "fashion", "streetwear", "madman", "los-angeles"],
+  "author": "Koby AI",
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "^4.42.1"
+  }
+}
